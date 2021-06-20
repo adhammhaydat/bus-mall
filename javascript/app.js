@@ -74,16 +74,38 @@ function eventHandler(e) {
     }
   
   }
+  if(counter>=25){
+    imageContenar.removeEventListener("click", eventHandler, false);
+  }
   
   imageContenar.addEventListener('click', eventHandler);
   
+  
   render();
+   
 
-  let numClick=0;
+  let numClick1=0
+  let numClick2=0
+  let numClick3=0;
+
   for(let j=0 ; j<imgArray.length; j++){
-    console.log(firstImg);
+    // console.log(firstImg);
     firstImg.onclick = function(b) { 
-       console.log(++numClick); 
+       console.log(++numClick1); 
+    }
+
+  }
+  for(let j=0 ; j<imgArray.length; j++){
+    // console.log(secondImg);
+    secondImg.onclick = function(b) { 
+       console.log(++numClick2); 
+    }
+
+  }
+  for(let j=0 ; j<imgArray.length; j++){
+    // console.log(thirdImg);
+    thirdImg.onclick = function(b) { 
+       console.log(++numClick3); 
     }
 
   }
