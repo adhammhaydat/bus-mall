@@ -10,13 +10,13 @@
 </head>
 <body>
     <header>
-        <img src="" alt="">
+        
         <nav></nav>
     </header>
     <main>
         <section>
-            <div id="viewInfo">
-                <button  onclick="showData()" id="buttonResults">View Results</button>
+            <div id="viewInfo" class="viewInfo">
+                <button id="buttonResults">View Results</button>
             </div>
             
         </section>
@@ -25,14 +25,18 @@
                 <img src="" alt="" id="firstImg" >
                 <img src="" alt="" id="secondImg" >
                 <img src="" alt="" id="thirdImg" >
+            </section>
             <section>
-                <canvas id="myChart" width="400" height="400"></canvas>
-            </section>    
-        </section>
+                <canvas id="myChart" width="400" height="400"></canvas> 
+            </section>
+               
+        
 
         </section>
+        
     </main>
     <footer></footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
 <script src="./javascript/app.js"></script>
 </html>
