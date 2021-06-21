@@ -6,6 +6,7 @@ let secondImg = document.getElementById('secondImg');
 let thirdImg = document.getElementById('thirdImg');
 let viewInfo = document.getElementById('viewInfo');
 let buttonResults = document.getElementById('buttonResults');
+
 let imgArray = [
     'banana.jpg',
     'bathroom.jpg',
@@ -49,22 +50,39 @@ for( let i = 0; i < imgArray.length; i++ ){
   }
   
 function render(){
-    firstIndex = randomNumber(0, imgArray.length-1);
+  let replacFirstIndex,replacSeconIndex,replacThirdIndex;
+  replacFirstIndex = randomNumber(0, imgArray.length-1);
+    if(replacFirstIndex == firstIndex)
+    {
+      replacFirstIndex = randomNumber(0, imgArray.length-1)
+    }
     
    do{
-        secondIndex = randomNumber(0, imgArray.length-1);
-        thirdIndex = randomNumber(0, imgArray.length-1);
-   }while((firstIndex === secondIndex)||(firstIndex === thirdIndex)||(secondIndex === thirdIndex));
+    replacSeconIndex = randomNumber(0, imgArray.length-1);
+    if(replacSeconIndex == secondIndex)
+    {
+      replacSeconIndex = randomNumber(0, imgArray.length-1)
+    }
+    replacThirdIndex = randomNumber(0, imgArray.length-1);
+    if(replacThirdIndex == thirdIndex)
+    {
+      replacThirdIndex = randomNumber(0, imgArray.length-1)
+    }
+   }while((replacFirstIndex === replacSeconIndex)||(replacFirstIndex === replacThirdIndex)||(replacSeconIndex === replacThirdIndex));
 
    
-  firstImg.src = ShowImage.all[firstIndex].imgsrc;
-  secondImg.src = ShowImage.all[secondIndex].imgsrc;
-  thirdImg.src = ShowImage.all[thirdIndex].imgsrc;
+  firstImg.src = ShowImage.all[replacThirdIndex].imgsrc;
+  secondImg.src = ShowImage.all[replacSeconIndex].imgsrc;
+  thirdImg.src = ShowImage.all[replacFirstIndex].imgsrc;
 
-  ShowImage.all[firstIndex].view++;
+  ShowImage.all[replacThirdIndex].view++;
 
-  ShowImage.all[secondIndex].view++;
-  ShowImage.all[thirdIndex].view++;
+  ShowImage.all[replacSeconIndex].view++;
+  ShowImage.all[replacFirstIndex].view++;
+
+  firstIndex=replacFirstIndex;
+  secondIndex=replacSeconIndex;
+  thirdIndex=replacThirdIndex;
 }
 
 
