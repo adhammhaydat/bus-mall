@@ -13,7 +13,7 @@ header{
 
 main{
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 400px 1fr;
     gap: 20px;
 }
 .mainSection{
@@ -32,4 +32,8 @@ img{
 }
 footer{
     background-color: black;
+}
+li{
+    list-style: circle;
+    text-align: justify;
 }
