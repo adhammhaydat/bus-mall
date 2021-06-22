@@ -45,12 +45,14 @@ function ShowImage(name, src ){
     
 }
 ShowImage.all=[];
-
+let newShowImage;
 for( let i = 0; i < imgArray.length; i++ ){
-    new ShowImage( imgArray[i].split( '.' )[0], imgArray[i] );
+  newShowImage=new ShowImage( imgArray[i].split( '.' )[0], imgArray[i] );
+    
   }
   
-function render(){
+  
+ShowImage.prototype.render=function(){
    do{
     firstIndex = randomNumber(0, imgArray.length-1);
     secondIndex = randomNumber(0, imgArray.length-1);
@@ -67,6 +69,7 @@ function render(){
   ShowImage.all[firstIndex].view++;
   ShowImage.all[secondIndex].view++;
   ShowImage.all[thirdIndex].view++;
+
 }
 
 
@@ -76,14 +79,17 @@ function eventHandler(e) {
         ShowImage.all[firstIndex].clicks++;
       }
       if(e.target.id === 'secondImg' ){
+
         ShowImage.all[secondIndex].clicks++;
       }
       if(e.target.id === 'thirdImg' ){
         ShowImage.all[thirdIndex].clicks++;
        }
       counter++;
+      
+    
      
-      render();
+      newShowImage.render();
     }
   
 }
@@ -95,20 +101,34 @@ function showData(e){
     for(let i=0 ; i<imgArray.length; i++){
       let li =document.createElement('li');
       ul.appendChild(li);
-      li.textContent=`${ShowImage.all[i].name}  had ${ShowImage.all[i].clicks} votes, and was seen ${ShowImage.all[i].view} times`
+      li.textContent=`${ShowImage.all[i].name}  had ${ShowImage.all[i].clicks} votes, and was seen ${ShowImage.all[i].view} times`;
     }
     buttonResults.removeEventListener('click',showData);
     drawChart();
+    localStorage.setItem('data', JSON.stringify(ShowImage.all));
   }
 imageContenar.addEventListener('click', eventHandler);
 buttonResults.addEventListener('click', showData);
-render();
+newShowImage.render();
 
 function randomNumber( min, max ) {
     min = Math.ceil( min );
     max = Math.floor( max );
     return Math.floor( Math.random() * ( max - min + 1 ) + min ); //The maximum is inclusive and the minimum is inclusive
   }
+
+  function saveData() {
+    let data = JSON.parse(localStorage.getItem('data'));
+    if(data) {
+       
+
+      ShowImage.all=data;
+      }
+   
+    console.log(ShowImage.all);
+  }
+  
+  saveData();
 
 function drawChart() {
 
