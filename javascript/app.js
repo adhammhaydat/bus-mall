@@ -33,6 +33,7 @@ let imgArray = [
   let firstIndex ;
   let secondIndex;
   let thirdIndex;
+  let arr=[];
 
 function ShowImage(name, src ){
     this.name = name;
@@ -50,39 +51,22 @@ for( let i = 0; i < imgArray.length; i++ ){
   }
   
 function render(){
-  let replacFirstIndex,replacSeconIndex,replacThirdIndex;
-  replacFirstIndex = randomNumber(0, imgArray.length-1);
-    if(replacFirstIndex == firstIndex)
-    {
-      replacFirstIndex = randomNumber(0, imgArray.length-1)
-    }
-    
    do{
-    replacSeconIndex = randomNumber(0, imgArray.length-1);
-    if(replacSeconIndex == secondIndex)
-    {
-      replacSeconIndex = randomNumber(0, imgArray.length-1)
-    }
-    replacThirdIndex = randomNumber(0, imgArray.length-1);
-    if(replacThirdIndex == thirdIndex)
-    {
-      replacThirdIndex = randomNumber(0, imgArray.length-1)
-    }
-   }while((replacFirstIndex === replacSeconIndex)||(replacFirstIndex === replacThirdIndex)||(replacSeconIndex === replacThirdIndex));
+    firstIndex = randomNumber(0, imgArray.length-1);
+    secondIndex = randomNumber(0, imgArray.length-1);
+    thirdIndex = randomNumber(0, imgArray.length-1);
+    
+   }while((firstIndex === secondIndex)||(firstIndex === thirdIndex)||(secondIndex === thirdIndex)||arr.includes(firstIndex)||arr.includes(secondIndex)
+   ||arr.includes(thirdIndex));
+  arr=[];
+  arr.push(firstIndex,secondIndex,thirdIndex);
+  firstImg.src = ShowImage.all[firstIndex].imgsrc;
+  secondImg.src = ShowImage.all[secondIndex].imgsrc;
+  thirdImg.src = ShowImage.all[thirdIndex].imgsrc;
 
-   
-  firstImg.src = ShowImage.all[replacThirdIndex].imgsrc;
-  secondImg.src = ShowImage.all[replacSeconIndex].imgsrc;
-  thirdImg.src = ShowImage.all[replacFirstIndex].imgsrc;
-
-  ShowImage.all[replacThirdIndex].view++;
-
-  ShowImage.all[replacSeconIndex].view++;
-  ShowImage.all[replacFirstIndex].view++;
-
-  firstIndex=replacFirstIndex;
-  secondIndex=replacSeconIndex;
-  thirdIndex=replacThirdIndex;
+  ShowImage.all[firstIndex].view++;
+  ShowImage.all[secondIndex].view++;
+  ShowImage.all[thirdIndex].view++;
 }
 
 
